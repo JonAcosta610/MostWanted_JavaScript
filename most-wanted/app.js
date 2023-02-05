@@ -137,14 +137,68 @@ function displayPeople(people) {
  * in order to easily send the information to the user in the form of an alert().
  * @param {Object} person       A singular object.
  */
+// Instead of writting key:value several times, wrote the following code to iterate through all object values
 function displayPerson(person) {
-    let personInfo = `First Name: ${person.firstName}\n`;
-    personInfo += `Last Name: ${person.lastName}\n`;
+    let personInfo;
+    for (let key in person) {
+        if (personInfo === undefined){
+            personInfo = `${key.replace(/([A-Z])/g, ' $1')
+            .replace(/^./, function(str){ return str.toUpperCase(); })}: ${person[key]}\n`
+        } else {
+            personInfo += `${key.replace(/([A-Z])/g, ' $1')
+            .replace(/^./, function(str){ return str.toUpperCase(); })}: ${person[key]}\n`
+        }
+    }
+    // const personInfo = person
+    // let personInfo = `First Name: ${person.firstName}\n`;
+    // personInfo += `Last Name: ${person.lastName}\n`;
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
 }
 // End of displayPerson()
+// (person) => person.id === personObj.currentSpouse
+function findPersonFamily (personObj, peopleArray){
+    console.log(personObj.currentSpouse, peopleArray.filter(function(person){return personObj.currentSpouse === person.id}))
+    const spouseArr = peopleArray.filter(function(person){return personObj.currentSpouse === person.id})
+    console.log(spouseArr)
+    const spouseObj = Object.assign({},spouseArr)
+    console.log(spouseObj)
+    displayPerson(spouseObj)
+}
 
+function searchByTraits() {
+	let chooseTrait = prompt(
+		`Please choose from the following options: 'gender', 'height', 'weight', 'eye color', or 'occupation'.\nType the option you want, or type 'restart' or 'quit'.`);
+	switch (trait) {
+    	case "gender":
+        	return peopleArray.filter(function(person){return personObj.gender === person.id})
+        	alert()
+        	break;
+        case "height":
+        	peopleArray.filter(function(person){return personObj.height === person.id})
+        	alert()
+        	break;
+        case "weight":
+        	peopleArray.filter(function(person){return personObj.weight === person.id})
+        	alert()
+        	break;
+        case "eye color":
+        	peopleArray.filter(function(person){return personObj.eyeColor === person.id})
+        	alert()
+        	break;
+        case "occupation":
+        	peopleArray.filter(function(person){return personObj.occupation === person.id})
+        	alert()
+        	break;
+        case "restart":
+        	app(people);
+        	break;
+        case "quit":
+        	return;
+        default:
+        return mainMenu(person, people);
+	}
+}
 /**
  * This function's purpose is twofold:
  * First, to generate a prompt with the value passed in to the question parameter.
@@ -177,8 +231,13 @@ function yesNo(input) {
  * @param {String} input        A string.
  * @returns {Boolean}           Default validation -- no logic yet.
  */
+// not part of TODO list but updated to include input parameter
 function chars(input) {
-    return true; // Default validation only
+    if (typeof input === 'string') {
+        return true;
+    } else {
+        return false;
+    } // Default validation only
 }
 // End of chars()
 
