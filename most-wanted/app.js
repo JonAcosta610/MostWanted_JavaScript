@@ -172,35 +172,23 @@ function findPersonDescendants (peopleArray){
 }
 alert(findPersonDescendants);
 
-function searchByTraits (personObj, peopleArray) {
-	let chooseTrait = prompt(
-		`Please choose from the following options: 'gender', 'height', 'weight', 'eye color', or 'occupation'.\nType the option you want, or type 'restart' or 'quit'.`);
-	switch (trait) {
-    	case "gender":
-            let chooseGender = prompt(
-                `Please choose 'male' or 'female': `);
-        	return peopleArray.filter(function(person){return personObj.gender === person.id})
-        	break;
-        case "height":
-        	peopleArray.filter(function(person){return personObj.height === person.id})
-        	break;
-        case "weight":
-        	peopleArray.filter(function(person){return personObj.weight === person.id})
-        	break;
-        case "eye color":
-        	peopleArray.filter(function(person){return personObj.eyeColor === person.id})
-        	break;
-        case "occupation":
-        	peopleArray.filter(function(person){return personObj.occupation === person.id})
-        	break;
-        case "restart":
-        	app(people);
-        	break;
-        case "quit":
-        	return;
-        default:
-        return mainMenu(person, people);
-	}
+function searchByTraits (personObj,peopleArray) {
+    let numberOfTraits = prompt(`How many traits do you want to search by?`);
+    if(numberOfTraits === 1){
+        let chooseTrait = prompt(
+            `Please choose from the following options: 'gender', 'height', 'weight', 'eye color', or 'occupation'.\nType the option you want, or type 'restart' or 'quit'.`);
+            if(chooseTrait === 'gender') {
+                let chooseSex = prompt (parseInt(`Please choose 'male' or 'female'.`))
+                if(chooseSex === 'male') {
+                    return peopleArray.filter(function(person){return personObj.gender === person.gender})
+                } if(chooseSex === 'female') {
+                    return peopleArray.filter(function(person){return personObj.gender === person.gender})
+                }
+            }
+            if(chooseTrait === 'height') {
+                let setHeight = prompt (`Please enter a height in inches.`)
+            }
+    }
 }
 /**
  * This function's purpose is twofold:
