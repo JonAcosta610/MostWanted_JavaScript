@@ -166,29 +166,32 @@ function findPersonFamily (personObj, peopleArray){
     displayPerson(spouseObj)
 }
 
-function searchByTraits() {
+function findPersonDescendants (peopleArray){
+    const findParents = peopleArray.filter(function(person){return personObj.parents === person.id})
+    console.log(findParents)
+}
+alert(findPersonDescendants);
+
+function searchByTraits (personObj, peopleArray) {
 	let chooseTrait = prompt(
 		`Please choose from the following options: 'gender', 'height', 'weight', 'eye color', or 'occupation'.\nType the option you want, or type 'restart' or 'quit'.`);
 	switch (trait) {
     	case "gender":
+            let chooseGender = prompt(
+                `Please choose 'male' or 'female': `);
         	return peopleArray.filter(function(person){return personObj.gender === person.id})
-        	alert()
         	break;
         case "height":
         	peopleArray.filter(function(person){return personObj.height === person.id})
-        	alert()
         	break;
         case "weight":
         	peopleArray.filter(function(person){return personObj.weight === person.id})
-        	alert()
         	break;
         case "eye color":
         	peopleArray.filter(function(person){return personObj.eyeColor === person.id})
-        	alert()
         	break;
         case "occupation":
         	peopleArray.filter(function(person){return personObj.occupation === person.id})
-        	alert()
         	break;
         case "restart":
         	app(people);
