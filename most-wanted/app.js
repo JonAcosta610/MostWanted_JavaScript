@@ -156,40 +156,6 @@ function displayPerson(person) {
     alert(personInfo);
 }
 // End of displayPerson()
-// (person) => person.id === personObj.currentSpouse
-function findPersonFamily (personObj, peopleArray){
-    console.log(personObj.currentSpouse, peopleArray.filter(function(person){return personObj.currentSpouse === person.id}))
-    const spouseArr = peopleArray.filter(function(person){return personObj.currentSpouse === person.id})
-    console.log(spouseArr)
-    const spouseObj = Object.assign({},spouseArr)
-    console.log(spouseObj)
-    displayPerson(spouseObj)
-}
-
-function findPersonDescendants (peopleArray){
-    const findParents = peopleArray.filter(function(person){return personObj.parents === person.id})
-    console.log(findParents)
-}
-alert(findPersonDescendants);
-
-function searchByTraits (personObj,peopleArray) {
-    let numberOfTraits = prompt(`How many traits do you want to search by?`);
-    if(numberOfTraits === 1){
-        let chooseTrait = prompt(
-            `Please choose from the following options: 'gender', 'height', 'weight', 'eye color', or 'occupation'.\nType the option you want, or type 'restart' or 'quit'.`);
-            if(chooseTrait === 'gender') {
-                let chooseSex = prompt (parseInt(`Please choose 'male' or 'female'.`))
-                if(chooseSex === 'male') {
-                    return peopleArray.filter(function(person){return personObj.gender === person.gender})
-                } if(chooseSex === 'female') {
-                    return peopleArray.filter(function(person){return personObj.gender === person.gender})
-                }
-            }
-            if(chooseTrait === 'height') {
-                let setHeight = prompt (`Please enter a height in inches.`)
-            }
-    }
-}
 /**
  * This function's purpose is twofold:
  * First, to generate a prompt with the value passed in to the question parameter.
@@ -234,3 +200,54 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+
+// (person) => person.id === personObj.currentSpouse
+function findPersonFamily (personObj, peopleArray){
+    // console.log(personObj.currentSpouse, peopleArray.filter(function(person){return personObj.currentSpouse === person.id}))
+    let spouseArr;
+    if(spouseArr === undefined){
+        alert(peopleArray.filter(function(person){return personObj.currentSpouse === person.id}))
+    } else {
+        alert(peopleArray.filter(function(person){return personObj.currentSpouse === person.id}))
+    }
+    // const spouseObj = Object.assign({},spouseArr)
+    // console.log(spouseObj)
+    // displayPerson(spouseObj)
+}
+
+function findPersonDescendants (peopleArray){
+    const findParents = peopleArray.filter(function(person){return personObj.parents === person.id})
+    console.log(findParents)
+}
+alert(findPersonDescendants);
+
+function searchByTraits (peopleArray) {
+    let numberOfTraits = prompt(`You can search by different traits.\nHow many trait(s) do you want to search by?\nChoose between 1-5.`);
+    if(numberOfTraits === '1'){
+        let searchByTrait = prompt(`Choose a trait to search by: 'gender', 'height', 'weight', eye color', or 'occupation'.`);
+        if(searchByTrait === 'gender') {
+            let genderCriteria = prompt(`Are you searching for 'male' or 'female'?`);
+            if(genderCriteria === 'male'){
+                let result = peopleArray.filter(function(person){
+                    if(person.gender === genderCriteria){
+                        return true;
+                    }
+                });
+                return result;
+            } else {
+                if(genderCriteria === 'female'){
+                    let result = peopleArray.filter(function(person){
+                        if(person.gender === genderCriteria){
+                            return true;
+                        }
+                    });
+                    return result
+                }
+            }
+        } if(searchByTrait === 'height') {
+            
+        }
+    }
+}
+alert(searchByTraits(data));
