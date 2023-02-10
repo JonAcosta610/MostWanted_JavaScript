@@ -216,21 +216,16 @@ function findPersonFamily (personObj, peopleArr){
     parent1 = getParentsObjFromId(parentsArr[0], peopleArr);
 
     alert(spouseName);
-    alert(parent1?.firstName);
-    parentsArr.length > 1 && alert(parent2?.firstName);
-    
+    alert(`Parent Name: ${parent1?.firstName} ${parent1?.lastName}`);
+    parentsArr.length > 1 && alert(` Parent Name: ${parent2?.firstName} ${parent2?.lastName}`);
 
-    // console.log(personObj.currentSpouse, peopleArray.filter(function(person){return personObj.currentSpouse === person.id}))
-    // let spouseArr;
-    // if(spouseArr === undefined){
-    //     spouseArr = peopleArray.filter(function(person){return personObj.currentSpouse === person.id})
-    // } else {
-    //     spouseArr = peopleArray.filter(function(person){return personObj.currentSpouse === person.id})
-    // }
-    // const spouseObj = Object.assign({},spouseArr)
-    // console.log(spouseObj)
-    // displayPerson(spouseObj)
-}
+};
+const getParentsObjFromId = (parentId, peopleArr) => {
+    const soleParentArr = peopleArr.filter((person) => person.id === parentId);
+    return soleParentArr[0];
+};
+
+
 
 function findPersonDescendants (peopleArray){
     const findParents = peopleArray.filter(function(person){return personObj.parents === person.id})
