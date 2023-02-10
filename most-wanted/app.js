@@ -202,15 +202,31 @@ function chars(input) {
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
 
-// (person) => person.id === personObj.currentSpouse
-function findPersonFamily (personObj, peopleArray){
-    // console.log(personObj.currentSpouse, peopleArray.filter(function(person){return personObj.currentSpouse === person.id}))
-    let spouseArr;
-    if(spouseArr === undefined){
-        alert(peopleArray.filter(function(person){return personObj.currentSpouse === person.id}))
-    } else {
-        alert(peopleArray.filter(function(person){return personObj.currentSpouse === person.id}))
+function findPersonFamily (personObj, peopleArr){
+    const spouseId = personObj.currentSpouse;
+    const spouseObj = peopleArr.find((person) => person.id === spouseId);
+    const spouseName = `Spouse Name: ${spouseObj.firstName} ${spouseObj.lastName}`;
+
+    const parentsArr = personObj.parents;
+    let parent1 = "";
+    let parent2 = "";
+    if(parentsArr.length > 1) {
+        parent2 = getParentsObjFromId(parentsArr[1], peopleArr);
     }
+    parent1 = getParentsObjFromId(parentsArr[0], peopleArr);
+
+    alert(spouseName);
+    alert(parent1?.firstName);
+    parentsArr.length > 1 && alert(parent2?.firstName);
+    
+
+    // console.log(personObj.currentSpouse, peopleArray.filter(function(person){return personObj.currentSpouse === person.id}))
+    // let spouseArr;
+    // if(spouseArr === undefined){
+    //     spouseArr = peopleArray.filter(function(person){return personObj.currentSpouse === person.id})
+    // } else {
+    //     spouseArr = peopleArray.filter(function(person){return personObj.currentSpouse === person.id})
+    // }
     // const spouseObj = Object.assign({},spouseArr)
     // console.log(spouseObj)
     // displayPerson(spouseObj)
@@ -229,25 +245,15 @@ function searchByTraits (peopleArray) {
         if(searchByTrait === 'gender') {
             let genderCriteria = prompt(`Are you searching for 'male' or 'female'?`);
             if(genderCriteria === 'male'){
-                let result = peopleArray.filter(function(person){
+                let genderResult = peopleArray.filter(function(person){
                     if(person.gender === genderCriteria){
                         return true;
                     }
                 });
-                return result;
-            } else {
-                if(genderCriteria === 'female'){
-                    let result = peopleArray.filter(function(person){
-                        if(person.gender === genderCriteria){
-                            return true;
-                        }
-                    });
-                    return result
-                }
+                return genderResult;
             }
         } if(searchByTrait === 'height') {
-            
+            let heightCriteria = prompt(`Please type a height in inches.`)
         }
     }
 }
-alert(searchByTraits(data));
