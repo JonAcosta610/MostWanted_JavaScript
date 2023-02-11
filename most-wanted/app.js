@@ -225,13 +225,26 @@ const getParentsObjFromId = (parentId, peopleArr) => {
     return soleParentArr[0];
 };
 
+function findPersonDescendants (personObj, peopleArr){
+    for (let index in peopleArr) {
+        // console.log(peopleArr[index]);
 
+        const parentsArr = peopleArr?.[index]?.parents;
+        // console.log(parentsArr);
+        for (let index in parentsArr) {
+            // console.log(parentsArr[index]);
 
-function findPersonDescendants (peopleArray){
-    const findParents = peopleArray.filter(function(person){return personObj.parents === person.id})
-    console.log(findParents)
-}
-alert(findPersonDescendants);
+            const parentId = parentsArr[index];
+            if(parentId === personObj.id) {
+                const parentName = `${personObj.firstName} ${personObj.lastName}`;
+                const descendantName = `${peopleArr?.[index]?.firstName} ${peopleArr?.[index]?.lastName}`
+                alert(`The descendant of ${parentName} is ${descendantName}`);
+                return;
+            }
+        }
+    }
+    alert(`${personObj.firstName} ${personObj.lastName} does not have any descendants`)
+};
 
 function searchByTraits (peopleArray) {
     let numberOfTraits = prompt(`You can search by different traits.\nHow many trait(s) do you want to search by?\nChoose between 1-5.`);
