@@ -204,6 +204,8 @@ function chars(input) {
 
 function findPersonFamily (personObj, peopleArr){
     const spouseId = personObj.currentSpouse;
+    // const {currentSpouse} = personObj ?? {}
+    // another way to write line above
     const spouseObj = peopleArr.find((person) => person.id === spouseId);
     const spouseName = `Spouse Name: ${spouseObj.firstName} ${spouseObj.lastName}`;
 
@@ -217,7 +219,7 @@ function findPersonFamily (personObj, peopleArr){
 
     alert(spouseName);
     alert(`Parent Name: ${parent1?.firstName} ${parent1?.lastName}`);
-    parentsArr.length > 1 && alert(` Parent Name: ${parent2?.firstName} ${parent2?.lastName}`);
+    parentsArr.length > 1 && alert(`Parent Name: ${parent2?.firstName} ${parent2?.lastName}`);
 
 };
 const getParentsObjFromId = (parentId, peopleArr) => {
@@ -226,24 +228,31 @@ const getParentsObjFromId = (parentId, peopleArr) => {
 };
 
 function findPersonDescendants (personObj, peopleArr){
+    // if parents array is blank they have descendants
+    // if parents array has a value, they have no descendants
+    if(personObj?.parents?.length >= 1) alert(`${personObj.firstName} ${personObj.lastName} does not have any descendants`)
+
     for (let index in peopleArr) {
         // console.log(peopleArr[index]);
 
         const parentsArr = peopleArr?.[index]?.parents;
         // console.log(parentsArr);
+        const childObj = peopleArr?.[index];
         for (let index in parentsArr) {
             // console.log(parentsArr[index]);
 
             const parentId = parentsArr[index];
             if(parentId === personObj.id) {
+                // console.log(obj)
                 const parentName = `${personObj.firstName} ${personObj.lastName}`;
-                const descendantName = `${peopleArr?.[index]?.firstName} ${peopleArr?.[index]?.lastName}`
+                const descendantName = `${childObj.firstName} ${childObj.lastName}`;
                 alert(`The descendant of ${parentName} is ${descendantName}`);
+            } else {
+                alert(`${personObj.firstName} ${personObj.lastName} does not have any descendants`)
                 return;
             }
         }
     }
-    alert(`${personObj.firstName} ${personObj.lastName} does not have any descendants`)
 };
 
 function searchByTraits (peopleArray) {
