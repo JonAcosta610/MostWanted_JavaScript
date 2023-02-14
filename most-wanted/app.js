@@ -256,21 +256,65 @@ function findPersonDescendants (personObj, peopleArr){
 };
 
 function searchByTraits (peopleArray) {
-    let numberOfTraits = prompt(`You can search by different traits.\nHow many trait(s) do you want to search by?\nChoose between 1-5.`);
+    const numberOfTraits = prompt(`You can search by different traits.\nHow many trait(s) do you want to search by?\nChoose between 1-5.`);
     if(numberOfTraits === '1'){
-        let searchByTrait = prompt(`Choose a trait to search by: 'gender', 'height', 'weight', eye color', or 'occupation'.`);
+        const searchByTrait = prompt(`Choose a trait to search by: 'gender', 'height', 'weight', eye color', or 'occupation'.`);
         if(searchByTrait === 'gender') {
-            let genderCriteria = prompt(`Are you searching for 'male' or 'female'?`);
+            const genderCriteria = prompt(`Are you searching for 'male' or 'female'?`);
             if(genderCriteria === 'male'){
-                let genderResult = peopleArray.filter(function(person){
+                const genderResult = peopleArray.filter(function(person){
                     if(person.gender === genderCriteria){
                         return true;
                     }
                 });
+                // console.log(genderResult)
                 return genderResult;
+            } else {
+                const genderResult = peopleArray.filter(function(person){
+                    if(person.gender === genderCriteria){
+                        return true;
+                    }
+                });
+                // console.log(genderResult)
+                return genderResult;
+
             }
-        } if(searchByTrait === 'height') {
-            let heightCriteria = prompt(`Please type a height in inches.`)
+        } else if(searchByTrait === 'height') {
+            const heightCriteria = prompt(`Please type a height in inches.`)
+            const foundHeight = peopleArray.filter(function(person) {
+                if(person.height.includes(heightCriteria)) {
+                    return true; 
+                }
+            });
+            console.log(foundHeight);
+            return foundHeight
+        } else if(searchByTrait === 'weight'){
+            const weightCriteria = prompt(`Please type a weight in pounds`)
+            const foundWeight = peopleArray.filter(function(person){
+                if(person.weight.includes(weightCriteria)) {
+                    return true;
+                }
+            });
+            return foundWeight;
+        } else if(searchByTrait === 'eye color') {
+            const eyeCriteria = prompt(`Please type the eye color.`)
+            const foundEye = peopleArray.filter(function(person) {
+                if(person.eyeColor.includes(eyeCriteria)) {
+                    return true; 
+                }
+            });
+            return foundEye;
+        } else if(searchByTrait === 'occupation'){
+            const occupationCriteria = prompt(`Please type the occupation.`)
+            const foundOccupation = peopleArray.filter(function(person){
+                if(person.occupation.includes(occupationCriteria)) {
+                    return true;
+                }
+            });
+            return foundOccupation;
         }
-    }
+    } else if(numberOfTraits = '2') {
+        const firstTrait = prompt(`Choose the first trait to search by: 'gender', 'height', 'weight', 'eye color' or 'occupation`);
+        const secondTrait = prompt(`Choose the second trait to search by: 'gender', 'height', 'weight', 'eye color' or 'occupation`);
+    } 
 }
