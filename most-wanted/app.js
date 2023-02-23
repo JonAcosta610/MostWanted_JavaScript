@@ -282,7 +282,7 @@ function searchByTraits (peopleArray) {
         } else if(searchByTrait === 'height') {
             const heightCriteria = prompt(`Please type a height in inches.`)
             const foundHeight = peopleArray.filter(function(person) {
-                if(person.height.includes(heightCriteria)) {
+                if(person.height === parseInt(heightCriteria)) {
                     return true; 
                 }
             });
@@ -291,7 +291,7 @@ function searchByTraits (peopleArray) {
         } else if(searchByTrait === 'weight'){
             const weightCriteria = prompt(`Please type a weight in pounds`)
             const foundWeight = peopleArray.filter(function(person){
-                if(person.weight.includes(weightCriteria)) {
+                if(person.weight === parseInt(weightCriteria)) {
                     return true;
                 }
             });
@@ -316,5 +316,14 @@ function searchByTraits (peopleArray) {
     } else if(numberOfTraits = '2') {
         const firstTrait = prompt(`Choose the first trait to search by: 'gender', 'height', 'weight', 'eye color' or 'occupation`);
         const secondTrait = prompt(`Choose the second trait to search by: 'gender', 'height', 'weight', 'eye color' or 'occupation`);
+        if(firstTrait === 'gender' && secondTrait === 'height'){
+
+        } else if(firstTrait === 'gender' && secondTrait === 'weight'){
+
+        }else if(firstTrait === 'gender' && secondTrait === 'eye color') {
+
+        }else if( firstTrait === 'gender' && secondTrait === 'occupation') {
+            
+        }
     } 
 }
